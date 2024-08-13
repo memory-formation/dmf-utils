@@ -71,7 +71,6 @@ class SlackBackend(AlertBackend):
     def _send_attachment_message(self, text: str, channel: str, attachment: Union[str, Path]) -> dict:
         """Send a message with an attachment to Slack."""
         file_path = str(attachment)  # Ensure the path is a string
-        print(file_path, channel)
         return self.client.files_upload_v2(
             channel=channel,
             file=file_path,
