@@ -106,8 +106,8 @@ def _input_to_str(args, kwargs, input, max_length: int = 100) -> str:
     sep = "\n" + 10 * " " + "• "
     if input is True:
         for i, arg in enumerate(args, 1):
-            input_str += f"{sep}*arg {i}*: _{_to_str(arg, max_length)}_"
+            input_str += f"{sep}*arg{i}*: _{_to_str(arg, max_length)}_"
     for key, value in kwargs.items():
         if input is True or key in input:
-            input_str += f"{sep}*arg {key}*: _{_to_str(value, max_length)}_"
+            input_str += f"{sep}*{key}*: _{_to_str(value, max_length)}_"
     return input_str

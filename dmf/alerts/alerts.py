@@ -75,6 +75,10 @@ def get_backend(
             from .slack_backend import SlackBackend
 
             current_backend = SlackBackend(token=alert_token)
+        elif credential_type == "telegram":
+            from .telegram_backend import TelegramBackend
+
+            current_backend = TelegramBackend(token=alert_token)
         else:
             raise ValueError(f"Unsupported credential type: {credential_type}")
 
@@ -88,7 +92,7 @@ def get_backend(
     return current_backend
 
 
-def resolve_credentials(alert_token: Optional[str] = None) -> tuple[str, str]:
+def resolve_credentials(alert_token: Optional[str] = None) -> tuple[str, Literal["slack", "telegram"]]:
     """
     Resolve the credentials for the alert system. Look for environment variables, or use provided overrides.
 
@@ -101,7 +105,12 @@ def resolve_credentials(alert_token: Optional[str] = None) -> tuple[str, str]:
         raise ValueError(
             f"Alert token must be provided or set in the {ALERT_TOKEN} environment variable."
         )
-
-    credential_type = "slack"
+    
+    if alert_token.startswith("xoxb-"):
+        credential_type = "slack"
+    # Check if the token is a Telegram token format
+    
+    elif len(alert_token.split(":")) == 2:
+        credential_type = "telegram"
 
     return alert_token, credential_type
