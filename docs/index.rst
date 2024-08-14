@@ -1,16 +1,21 @@
 Welcome to DMF Utils's documentation!
 =====================================
 
-.. image:: https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12-blue.svg
-   :alt: Python Versions
+.. image:: https://badge.fury.io/py/dmf-utils.svg
+   :target: https://pypi.org/project/dmf-utils/
+   :alt: PyPI version
+
+.. image:: https://img.shields.io/pypi/pyversions/dmf-utils
+   :alt: PyPI - Python Version
 
 .. image:: https://readthedocs.org/projects/dmf-utils/badge/?version=latest
-    :target: https://dmf-utils.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+   :target: https://dmf-utils.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/license-MIT-green.svg
    :target: https://github.com/memory-formation/dmf-utils/blob/main/LICENSE
    :alt: License
+
 
 ----------------
 

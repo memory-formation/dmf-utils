@@ -1,9 +1,11 @@
 
 # DMF Utils
 
-![Python Versions](https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12-blue)
+[![PyPI version](https://badge.fury.io/py/dmf-utils.svg)](https://pypi.org/project/dmf-utils/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmf-utils)
 [![Documentation Status](https://readthedocs.org/projects/dmf-utils/badge/?version=latest)](https://dmf-utils.readthedocs.io/en/latest/?badge=latest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/memory-formation/dmf-utils/blob/main/LICENSE)
+
 
 DMF Utils is a Python package that provides a collection of utility functionalities to simplify common tasks in experiment and data analysis workflows. The package contains modules used by our group to facilitate tasks in neuroscience and artificial intelligence research.
 
