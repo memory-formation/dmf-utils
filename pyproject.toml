@@ -41,7 +41,7 @@ classifiers = [
 ]
 
 [project.urls]
-repository = "https://github.com/yourusername/dmf-utils/"
+repository = "https://github.com/memory-formation/dmf-utils"
 
 [tool.setuptools.packages.find]
 include = ["dmf*"]
