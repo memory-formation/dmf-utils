@@ -2,6 +2,7 @@
 # DMF Utils
 
 ![Python Versions](https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12-blue)
+[![Documentation Status](https://readthedocs.org/projects/dmf-utils/badge/?version=latest)](https://dmf-utils.readthedocs.io/en/latest/?badge=latest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/memory-formation/dmf-utils/blob/main/LICENSE)
 
 DMF Utils is a Python package that provides a collection of utility functionalities to simplify common tasks in experiment and data analysis workflows. The package contains modules used by our group to facilitate tasks in neuroscience and artificial intelligence research.
@@ -16,7 +17,7 @@ You can install **all modules** with pip or other package managers by running:
 pip install dmf-utils[all]
 ```
 
-See the [documentation](.) for more installation options and help, including how to use it in environments without internet access.
+See the [documentation](https://dmf-utils.readthedocs.io/) for more installation options and help, including how to use it in environments without internet access.
 
 ## Modules
 
@@ -52,7 +53,7 @@ See the documentation for more information on how to set up the messaging servic
 
 ## Documentation
 
-For full documentation, visit [Read the Docs](https://dmf-utils.readthedocs.io/en/latest/).
+For full documentation, visit [Read the Docs](https://dmf-utils.readthedocs.io/).
 
 ## Contributing
 

@@ -4,6 +4,10 @@ Welcome to DMF Utils's documentation!
 .. image:: https://img.shields.io/badge/python-3.7%20|%203.8%20|%203.9%20|%203.10%20|%203.11%20|%203.12-blue.svg
    :alt: Python Versions
 
+.. image:: https://readthedocs.org/projects/dmf-utils/badge/?version=latest
+    :target: https://dmf-utils.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://img.shields.io/badge/license-MIT-green.svg
    :target: https://github.com/memory-formation/dmf-utils/blob/main/LICENSE
    :alt: License
@@ -70,7 +74,7 @@ DMF Utils is licensed under the MIT License. See the license file for more detai
 
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
