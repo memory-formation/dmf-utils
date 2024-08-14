@@ -36,11 +36,53 @@ TELEGRAM_EMOJI_MAPPING = {
 
 
 class TelegramBackend(AlertBackend):
+    """
+    A backend for sending alerts through Telegram.
+
+    This class allows you to send alerts to a specified Telegram channel using a bot token.
+    It supports sending plain text messages, as well as messages with attachments.
+
+    To use this backend, you'll need to provide a Telegram bot token and specify a channel
+    (chat ID) where the alerts should be sent.
+
+    **Getting a Telegram Bot Token**:
+
+    1. Open the Telegram app and start a conversation with the BotFather (@BotFather).
+    2. Use the `/newbot` command to create a new bot and follow the prompts to name your bot.
+    3. After creating the bot, BotFather will provide you with a token. This token is required
+       to authenticate your bot and should be passed as the `token` parameter when initializing
+       the `TelegramBackend`.
+
+    **Channel Parameter**:
+
+    - The `channel` parameter should be the chat ID where messages should be sent.
+    - The chat ID can be obtained by adding the bot to the desired channel or group and retrieving the chat ID using the Telegram API or a bot command.
+    - If you're sending messages to a private group or channel, ensure that your Telegram bot has been added to that group or channel.
+
+    **Example Usage**:
+
+    To send a simple message using the Telegram backend::
+
+        backend = TelegramBackend(token="your-telegram-bot-token", channel="@your_channel_id")
+        backend("Hello, Telegram!")
+
+    :param token: The Telegram bot token used for authentication. This token is necessary to send messages to Telegram.
+    :param channel: Optional; The Telegram channel (chat ID) where messages should be sent. 
+                    If not provided, the channel will be determined by the `DMF_DEFAULT_CHANNEL` environment variable.
+    :param fail_silently: Optional; If True, errors will be logged instead of raising an exception. Default is True.
+    """
     def __init__(
         self, token: str, channel: Optional[str] = None, fail_silently: bool = True
     ):
         """
         Initialize the Telegram backend with the token and default channel (chat ID).
+
+        :param token: The Telegram bot token used for authentication. This token is necessary to send messages to Telegram.
+        :param channel: Optional; The Telegram channel (chat ID) where messages should be sent. 
+                        If not provided, the channel will be determined by the `DMF_DEFAULT_CHANNEL` environment variable.
+        :param fail_silently: Optional; If True, errors will be logged instead of raising an exception. Default is True.
+
+        :raises AlertException: If the channel (chat ID) is not provided and is not set in the environment variables.
         """
         super().__init__(fail_silently=fail_silently)
         self.token = token
