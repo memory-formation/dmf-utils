@@ -63,17 +63,18 @@ class TelegramBackend(AlertBackend):
         Raises AlertException if an error occurs.
         """
         if scheduled_time is not None:
+            if not self.fail_silently:
+                raise AlertException(
+                    "Scheduled time is provided but is not supported by the Telegram backend."
+                )
             logging.warning(
-                "Scheduled time is provided but will be ignored because an attachment is also provided."
+                "Scheduled time is provided but is not supported by the Telegram backend. "
             )
 
         try:
             self._send_message(text=text, attachment=attachment)
         except Exception as error:
-            if self.fail_silently:
-                logging.error(f"Error sending message: {str(error)}")
-            else:
-                raise AlertException(f"Error sending message: {str(error)}") from error
+            raise AlertException(f"Error sending message: {str(error)}") from error
 
     def __repr__(self) -> str:
         return f"<{self.__class__.__name__} channel={self.channel}>"

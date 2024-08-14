@@ -17,15 +17,52 @@ def alert(
     """
     Decorator that sends an alert after the execution of the decorated function.
 
-    Can be used with or without parentheses:
-    - @alert
-    - @alert(output=True, input=True)
+    The decorator can be applied with or without parentheses, allowing flexibility
+    in how you use it to notify about function execution. It supports logging of
+    input parameters, output values, and the duration of the function execution.
 
-    :param func: The function to be decorated.
+    :param func: Optional; The function to be decorated.
     :param output: If True, include the function's output in the alert message.
-    :param input: If True, log the input parameters (args and kwargs).
+                   If the output is a Path object, the file will be sent in the message.
+    :param input: If True, log the input parameters (args and kwargs). If a list of argument
+                  names is provided, only those arguments will be logged.
     :param max_length: Maximum length of the output string to be logged.
+
     :return: The decorator function.
+
+    **Examples**:
+
+    Will notify when the execution of this function finishes, with information
+    about the start time and duration::
+
+        @alert
+        def hello(name):
+            return f"Hello {name}!"
+
+    Here, the input arguments are also included in the notification::
+
+        @alert(input=True)
+        def hello(name):
+            return f"Hello {name}!"
+
+    Here, only the specified input argument ('name') will be included in the notification::
+
+        @alert(input=["name"])
+        def hello(name, surname):
+            return f"Hello {name} {surname}!"
+
+    Here, the output will be included in the message::
+
+        @alert(output=True)
+        def hello(name, surname):
+            return f"Hello {name} {surname}!"
+
+    If the output is a Path, the file will be sent in the message::
+
+        @alert(output=True)
+        def hello(name):
+            print(f"Hello {name}")
+            return Path("/path/to/{name}.pdf")
     """
     if func is None:
         # Used as @alert(output=True, input=True) with parentheses
