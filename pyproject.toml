@@ -5,11 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "dmf-utils"
 description = "DMF's Python package providing reusable functionalities for neuroscience research."
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 license = {text = "MIT"}
 dynamic = ["version", "readme"]
 dependencies = [
     "lazy_loader",
+    "typing-extensions; python_version == '3.7'"
 ]
 authors = [
     {name="Dynamics of Memory Formation Group", email="llfuentemilla@ub.edu"},
@@ -29,6 +30,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
