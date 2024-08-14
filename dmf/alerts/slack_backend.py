@@ -4,8 +4,12 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, Union
 
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
+try:
+    from slack_sdk import WebClient
+    from slack_sdk.errors import SlackApiError
+except ImportError:
+    raise ImportError("The 'slack_sdk' package is required to use the Slack backend."
+                      "You can install it with 'pip install dmf-utils[alerts]'.")
 
 from .backend import AlertBackend, AlertException
 

@@ -1,5 +1,10 @@
-from typing import Optional, TYPE_CHECKING, Union, Literal
+from typing import Optional, TYPE_CHECKING, Tuple, Union
 import os
+
+try:  # Compatibility with Python 3.6+
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 
 if TYPE_CHECKING:
     from .backend import AlertBackend
@@ -92,7 +97,7 @@ def get_backend(
     return current_backend
 
 
-def resolve_credentials(alert_token: Optional[str] = None) -> tuple[str, Literal["slack", "telegram"]]:
+def resolve_credentials(alert_token: Optional[str] = None) -> Tuple[str, Literal["slack", "telegram"]]:
     """
     Resolve the credentials for the alert system. Look for environment variables, or use provided overrides.
 

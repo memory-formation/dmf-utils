@@ -1,5 +1,9 @@
-from typing import Union, Optional, TYPE_CHECKING, Literal
-import enum
+from typing import Union, Optional, TYPE_CHECKING
+
+try: # Compatibility with Python 3.6
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -13,7 +17,6 @@ LEVEL_MAPPING = {
     "warning": ":warning:",
     "error": ":red_circle:",
 }
-
 
 class AlertException(Exception):
     """Exception raised for errors in the alert backend."""

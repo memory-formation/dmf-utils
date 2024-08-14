@@ -1,10 +1,19 @@
 import logging
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
-from typing import Optional, Union, Literal
+from typing import Optional, Union
 
-import requests
+try: # Compatibility with Python 3.6+
+    from typing import Literal
+except ImportError:
+    from typing_extensions import Literal
+
+try:
+    import requests
+except ImportError:
+    raise ImportError("The 'requests' package is required to use the Telegram backend."
+                        "You can install it with 'pip install dmf-utils[alerts]'.")
 
 from .backend import AlertBackend, AlertException
 
@@ -97,9 +106,9 @@ class TelegramBackend(AlertBackend):
 
     def get_alert_text(
         self,
-        text: str | None = None,
+        text: Optional[str] = None,
         level: Literal["success", "info", "warning", "error"] = "info",
-        params: dict | None = None,
+        params: Optional[dict] = None,
         separator: str = "\n  • ",
     ) -> str:
         text = super().get_alert_text(text, level, params, separator)
