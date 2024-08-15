@@ -16,12 +16,11 @@ Welcome to DMF Utils's documentation!
    :target: https://github.com/memory-formation/dmf-utils/blob/main/LICENSE
    :alt: License
 
-
 ----------------
 
-DMF Utils is a Python package that provides a collection of utility functionalities to 
-simplify common tasks in experiment and data analysis workflows. 
-The package contains modules used by our group to facilitate tasks in neuroscience and artificial intelligence research.
+DMF Utils is a Python package that provides a collection of utility functionalities to simplify 
+common tasks in experiment and data analysis workflows. 
+The package contains reusable modules to facilitate tasks in neuroscience research.
 
 .. toctree::
    :maxdepth: 2
@@ -30,57 +29,44 @@ The package contains modules used by our group to facilitate tasks in neuroscien
    installation
    modules/index
 
-Quick Start
------------
-.. _quick-start:
+Installation
+------------
 
-DMF Utils is designed in a modular way, allowing you to install only the components needed for a specific project. 
-This modularity also ensures compatibility with a wide range of Python versions.
-
-To install all modules:
+DMF Utils can be installed directly from PyPI. To install all available modules, use the following command:
 
 .. code-block:: bash
 
     pip install dmf-utils[all]
 
-See the :doc:`installation` section for more details.
+For more detailed installation instructions and options, please refer to the :doc:`installation` page.
 
-You can use DMF Utils to send alerts and manage experiments efficiently. For example, here is how you can use the Alerts module:
+Modules
+-------
 
-.. code-block:: python
+DMF Utils is designed in a modular way, allowing you to install only the components needed for your specific project. The available modules include:
 
-    from dmf.alerts import alert
+- :doc:`modules/alerts`: Tools for sending notifications and alerts via Slack and Telegram.
+- **io**: Input/output utilities for file handling and data management.
+- **logging**: Configurable logging utilities to standardize logging across projects.
+- **env**: Environment management tools for handling configurations and environment variables.
 
-    @alert
-    def my_function(name):
-        sleep(5)
-        return f"Hello, {name}!"
-
-    my_function("World")
-
-Or from the command line:
-
-.. code-block:: bash
-
-    ./my_function > output.txt
-    dmf-alert "Execution finished" -a output.txt
-
-For more information on setting up the messaging service and using other functionalities, see the :doc:`modules/index` section.
+For more detailed information about each module, see the :doc:`modules/index` section.
 
 Contributing
 ------------
 
-DMF Utils is maintained by the DMF Group at the University of Barcelona. We welcome contributions from the community. If you would like to contribute, open an issue or submit a pull request on our `GitHub repository <https://github.com/memory-formation/dmf-utils>`
+DMF Utils is maintained by the Dynamics of Memory Formation (DMF) Group at the University of Barcelona. 
+We welcome contributions from the community. 
+If you would like to contribute, please open an issue or submit a pull request on our `GitHub repository <https://github.com/memory-formation/dmf-utils>`_.
 
 License
 -------
 
-DMF Utils is licensed under the MIT License. See the license file for more details.
-
+DMF Utils is licensed under the MIT License. 
+For more details, see the full license text in the `license <https://raw.githubusercontent.com/memory-formation/dmf-utils/main/LICENSE>`_ file.
 
 Indices and tables
 ------------------
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+* :ref:`genindex`
