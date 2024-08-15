@@ -22,3 +22,8 @@ help:
 # Make and open the docs in the browser
 docs: html
 	open $(BUILDDIR)/html/index.html
+
+# Clean build directory and autosummary folder
+clean:
+	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	rm -rf modules/autosummary _build
