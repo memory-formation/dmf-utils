@@ -180,3 +180,6 @@ cython_debug/
 .DS_Store
 
 autosummary/
+
+# Include DMF env module
+!dmf/env/
