@@ -172,6 +172,10 @@ cython_debug/
 *.ico
 *.webp
 *.mp4
+*.avi
+*.mov
+*.m4v
+*.csv
 
 # Vscode
 .vscode/

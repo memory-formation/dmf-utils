@@ -68,3 +68,14 @@ all = [
     "slack_sdk",
     "requests",
 ]
+extra = [
+    "pandas", 
+    "h5py", 
+    "pillow",
+    "torch",
+    "pyyaml",
+    "scipy",
+    "librosa",
+    "opencv-python",
+    "matplotlib",
+]
