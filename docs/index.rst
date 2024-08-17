@@ -12,6 +12,10 @@ Welcome to DMF Utils's documentation!
    :target: https://dmf-utils.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
+.. image:: https://github.com/memory-formation/dmf-utils/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/memory-formation/dmf-utils/actions/workflows/tests.yml
+   :alt: Tests
+
 .. image:: https://www.repostatus.org/badges/latest/wip.svg
    :alt: Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.
    :target: https://www.repostatus.org/#wip

@@ -4,6 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/dmf-utils.svg)](https://pypi.org/project/dmf-utils/)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmf-utils)
 [![Documentation Status](https://readthedocs.org/projects/dmf-utils/badge/?version=latest)](https://dmf-utils.readthedocs.io/en/latest/?badge=latest)
+![Tests](https://github.com/memory-formation/dmf-utils/actions/workflows/tests.yml/badge.svg)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/memory-formation/dmf-utils/blob/main/LICENSE)
 
@@ -35,7 +36,7 @@ For full documentation, visit [Read the Docs](https://dmf-utils.readthedocs.io/)
 
 ## Contributing
 
-This package is maintained by the [Dynamics of Memory Formation (DMF) Group at the University of Barcelona](https://brainvitge.org/groups/memory_formation/). We welcome contributions from the community. If you would like to contribute, please open an issue or a pull request.
+This package is maintained by [Dynamics of Memory Formation (DMF)](https://brainvitge.org/groups/memory_formation/) at the University of Barcelona. We welcome contributions from the community. If you would like to contribute, please open an issue or a pull request.
 
 ## License
 
