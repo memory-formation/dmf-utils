@@ -55,6 +55,7 @@ DMF Utils is designed in a modular way, allowing you to install only the compone
 
 - :doc:`modules/alerts`: Tools for sending notifications and alerts via Slack and Telegram.
 - :doc:`modules/io`: Input/output utilities for file handling and data management.
+- :doc:`modules/env`: Facities to manage environemt variables.
 
 
 For more detailed information about each module, see the :doc:`modules/index` section.

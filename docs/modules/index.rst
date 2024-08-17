@@ -10,3 +10,4 @@ Below are the different modules available within the package:
 
    alerts
    io
+   env
