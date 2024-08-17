@@ -10,7 +10,9 @@ license = {text = "MIT"}
 dynamic = ["version", "readme"]
 dependencies = [
     "lazy_loader",
-    "typing-extensions; python_version == '3.7'"
+    "typing-extensions; python_version == '3.7'",
+    'python-dotenv>=1.0.1; python_version >= "3.8"',
+    'python-dotenv>=0.21.0,<0.22.0; python_version == "3.7"',
 ]
 authors = [
     {name="Dynamics of Memory Formation Group", email="llfuentemilla@ub.edu"},
