@@ -2,7 +2,7 @@
 from pathlib import Path
 from typing import Optional, Union, Callable
 
-from ..utils.register import register
+from ..utils.decorators import register
 
 COMPRESSORS = {}
 
