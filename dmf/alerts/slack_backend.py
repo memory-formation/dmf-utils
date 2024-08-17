@@ -1,5 +1,5 @@
 import logging
-import os
+
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, Union
@@ -14,6 +14,7 @@ except ImportError:
     )
 
 from .backend import AlertBackend, AlertException
+from ..env import env
 
 __all__ = ["SlackBackend"]
 
@@ -74,7 +75,7 @@ class SlackBackend(AlertBackend):
 
         super().__init__(fail_silently=fail_silently)
         self.client = WebClient(token=token)
-        self.channel = channel or os.getenv(DEFAULT_CHANNEL_ENV)
+        self.channel = channel or env.getenv(DEFAULT_CHANNEL_ENV)
 
     def send_message(
         self,

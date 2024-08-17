@@ -1,7 +1,8 @@
 from typing import Optional, TYPE_CHECKING, Tuple, Union
-import os
+
 
 from ..utils.typing import Literal
+from ..env import env
 
 if TYPE_CHECKING:
     from .backend import AlertBackend
@@ -155,7 +156,7 @@ def resolve_credentials(
     :param alert_token: Optional; Slack token to override the environment variable.
     :return: A tuple containing the alert_token and the backend type ('slack').
     """
-    alert_token = alert_token or os.getenv(ALERT_TOKEN)
+    alert_token = alert_token or env.getenv(ALERT_TOKEN)
 
     if not alert_token:
         raise ValueError(

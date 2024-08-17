@@ -1,10 +1,10 @@
 import logging
-import os
 from datetime import datetime
 from pathlib import Path
 from typing import Optional, Union
 
 from ..utils.typing import Literal
+from ..env import env
 
 try:
     import requests
@@ -83,7 +83,7 @@ class TelegramBackend(AlertBackend):
         """
         super().__init__(fail_silently=fail_silently)
         self.token = token
-        self.channel = channel or os.getenv(DEFAULT_CHANNEL_ENV)
+        self.channel = channel or env.getenv(DEFAULT_CHANNEL_ENV)
 
         if not self.channel:
             raise AlertException(
