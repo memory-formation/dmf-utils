@@ -1,10 +1,7 @@
 from typing import Optional, TYPE_CHECKING, Tuple, Union
 import os
 
-try:  # Compatibility with Python 3.6+
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal
+from ..utils.typing import Literal
 
 if TYPE_CHECKING:
     from .backend import AlertBackend

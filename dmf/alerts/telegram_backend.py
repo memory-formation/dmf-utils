@@ -4,10 +4,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, Union
 
-try: # Compatibility with Python 3.6+
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal
+from ..utils.typing import Literal
 
 try:
     import requests

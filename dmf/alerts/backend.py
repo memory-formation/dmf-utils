@@ -1,9 +1,6 @@
 from typing import Union, Optional, TYPE_CHECKING
 
-try: # Compatibility with Python 3.6
-    from typing import Literal
-except ImportError:
-    from typing_extensions import Literal
+from ..utils.typing import Literal
 
 if TYPE_CHECKING:
     from pathlib import Path
