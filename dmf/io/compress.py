@@ -1,6 +1,6 @@
 
 from pathlib import Path
-from typing import Optional, Union, Tuple, Callable, List
+from typing import Optional, Union, Callable
 
 from ..utils.register import register
 
@@ -142,19 +142,22 @@ def compress_zip(
     """Compress a file or directory using zip."""
     import os
     import zipfile
+
+    # To support password protection we would need to use library like pyzipper
+    _check_password_none(password)
     
-    with zipfile.ZipFile(output_file, "w", zipfile.ZIP_DEFLATED) as zipf:
+    with zipfile.ZipFile(output_file, "w", zipfile.ZIP_DEFLATED, **kwargs) as zipf:
         if input_file.is_dir():
+            root_folder_name = input_file.name  # Get the name of the directory
             for root, _, files in os.walk(input_file):
                 for file in files:
+                    # Add the root folder name to the path within the zip
                     zipf.write(
-                        Path(root) / file, Path(root).relative_to(input_file) / file
+                        Path(root) / file, 
+                        Path(root_folder_name) / Path(root).relative_to(input_file) / file
                     )
         else:
             zipf.write(input_file, input_file.name)
-
-        if password:
-            zipf.setpassword(password.encode())
 
 
 @register(COMPRESSORS, ["7z"])
@@ -224,7 +227,7 @@ def _check_password_none(password: Optional[str]) -> None:
     """Check if password is None."""
     if password:
         raise NotImplementedError(
-            ERROR_PASSWORD="Password protection is not supported for the compression format. "
+            "Password protection is not supported for the compression format. "
             "Supported only for ZIP and 7z formats."
         )
 
