@@ -40,11 +40,11 @@ The package contains reusable modules to facilitate tasks in neuroscience resear
 Installation
 ------------
 
-DMF Utils can be installed directly from PyPI. To install all available modules, use the following command:
+DMF Utils can be installed directly from PyPI. To install the core package, use the following command:
 
 .. code-block:: bash
 
-    pip install dmf-utils[all]
+    pip install dmf-utils
 
 For more detailed installation instructions and options, please refer to the :doc:`installation` page.
 

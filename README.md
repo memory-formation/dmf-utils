@@ -15,10 +15,10 @@ DMF Utils is a Python package that provides a collection of utility functionalit
 
 This package is designed in a modular way, with some functionalities included in this repository and others in separate packages that can be called from here. This allows for installing only the components needed for a specific project, aiming to maintain the broadest compatibility with different Python versions.
 
-You can install **all modules** with pip or other package managers by running:
+You can install the core package with pip or other package managers by running:
 
 ```bash
-pip install dmf-utils[all]
+pip install dmf-utils
 ```
 
 See the [documentation](https://dmf-utils.readthedocs.io/) for more installation options and help, including how to use it in environments without internet access.

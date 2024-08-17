@@ -1,7 +1,8 @@
 Env
 ===
 
-The `env` module in DMF Utils provides a flexible and powerful way to manage environment variables across different levels, including user, project, and system. This module simplifies the handling of environment variables by allowing you to load, set, unset, and retrieve variables from different sources, making it easy to manage configurations for your projects.
+The `env` module in DMF Utils provides utilities to manage environment variables.
+It wraps python-dotenv to load automatically environment variables from `.env` files in different scopes.
 
 This module is included in the base package:
 
@@ -12,19 +13,25 @@ This module is included in the base package:
 Overview
 --------
 
-The `env` module allows you to:
+Sometimes, you need to manage environment variables in your projects to configure settings, secrets, and other sensitive information.
+However, in some cases, it can be challenging to keep track of all the environment variables you need to set, for example, when using several 
+projects at the same time or when working with multiple environments (e.g., development, testing, production), or when you need to install
+an experiment in different machines with different configurations.
+
+This `env` module allows you to:
 
 - Load environment variables from user-level and project-level `.env` files.
 - Set, get, and unset environment variables at different levels, ensuring your environment is configured correctly for your needs.
 - Work with environment variables in a flexible manner, using either a global instance or custom `EnvManager` instances.
 - Filter and retrieve all environment variables based on a specific scope or pattern.
 
-This module is designed to integrate seamlessly into your existing workflows, providing a unified interface for managing environment variables in your projects.
+By default, it reads env variables from the user config file ``~/.env.dmf`` and the project config file ``.env``, if 
+they exist. Joining with the existing environment variables.
 
 Environment Management Functions
 --------------------------------
 
-The `env` module provides several key functions for environment management. These functions allow you to easily set up, retrieve, set, and unset environment variables, and load them from various sources.
+Functions included in this module:
 
 .. autosummary::
    :toctree: autosummary
@@ -42,44 +49,39 @@ Examples
 
 .. code-block:: python
 
-    from dmf.env import env, setup, getenv, setenv, unsetenv
+    from dmf.env import env
 
-    # Setup the environment with default paths
-    setup()
+    # Load an existing environment variable
+    env.getenv('API_KEY') # Example output: '12345'
 
-    # Set a variable in the project scope
-    setenv('API_KEY', '12345', scope='project')
+    # Set a variable, saving in the file '.env'
+    setenv('SLACK_KEY', '12346', scope='project')
 
-    # Get the value of an environment variable
-    print(getenv('API_KEY'))  # Output: '12345'
-
-    # Unset a variable from the environment
-    unsetenv('API_KEY')
-
-    # Set a variable in the user scope
+    # Set a variable in the user file '~/.env.dmf'
     setenv('USER_SETTING', 'enabled', scope='user')
 
-    # Load additional variables from a custom .env file
-    env.load("custom.env")
+    # Set an environment variable during the execution
+    setenv('TEMPORAL_VAR', True)
 
-**Working with a Custom EnvManager Instance**:
+    import os
+
+    # All the environment variables are available in the os.environ
+    print(os.getenv('TEMPORAL_VAR'))  # Output: 'True'
+
+**Working with custom .env files**:
 
 .. code-block:: python
 
-    from dmf.env import EnvManager
+    from dmf.env import setup, env
 
-    # Initialize a custom EnvManager
-    custom_env = EnvManager().setup(project_env_path="my_project.env", user_env_path="~/.custom_env", override=True)
+    # Set ap a custom project env file
+    setup("custom.env")
 
-    # Set a variable in the user scope
-    custom_env.setenv('SECRET_KEY', 'abcdef', scope='user')
+    # List all variables
+    env.all()
 
-    # Get the value of an environment variable
-    print(custom_env.getenv('SECRET_KEY'))  # Output: 'abcdef'
-
-    # Retrieve all environment variables in the project scope
-    project_vars = custom_env.all(scope='project')
-    print(project_vars)
+    # All variables that starts with DMF
+    env.all("DMF_*")
 
 **Loading Environment Variables from a String**:
 
@@ -99,12 +101,11 @@ Examples
     print(env.getenv('API_KEY'))  # Output: '12345'
     print(env.getenv('DATABASE_URL'))  # Output: 'sqlite:///mydb.db'
 
-**Filtering Environment Variables by Pattern**:
+**Loading var from multiple files**:
 
 .. code-block:: python
 
     from dmf.env import env
 
-    # Retrieve all environment variables containing 'API' in their names
-    api_vars = env.all(pattern="API")
-    print(api_vars)
+    env.load("file1.env")
+    env.load("file2.env")

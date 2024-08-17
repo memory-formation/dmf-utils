@@ -44,9 +44,17 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # Add mappings
 intersphinx_mapping = {
-    "python": ("http://docs.python.org/3", None),
+    'python': ('https://docs.python.org/3', None),
+    'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
+    'matplotlib': ('https://matplotlib.org/stable/', None),
+    'pillow': ('https://pillow.readthedocs.io/en/stable/', None),
+    'torch': ('https://pytorch.org/docs/stable/', None),
+    'sklearn': ('https://scikit-learn.org/stable/', None),
+    'h5py': ('http://docs.h5py.org/en/stable/', None),
+    'joblib': ('https://joblib.readthedocs.io/en/latest/', None),
 }
-
 autodoc_default_options = {"members": True, "inherited-members": True, "show-inheritance": True}
 
 language = "en"

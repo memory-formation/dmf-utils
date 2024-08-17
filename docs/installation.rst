@@ -7,20 +7,15 @@ Depending on your needs, you can install the entire package or specific modules.
 Installing the Full Package
 ---------------------------
 
-To install all available modules in DMF Utils, use the following command:
+To install core package in DMF Utils, use the following command:
 
 .. code-block:: bash
 
-    pip install dmf-utils[all]
+    pip install dmf-utils
 
-This will install the core package along with all optional dependencies.
 
-.. note::
-
-    **Disclaimer**: This can be a large installation due to the number of dependencies required for all modules.
-
-Installing Specific Modules
-----------------------------
+Installing Modules
+------------------
 
 If you only need specific functionality, you can install individual modules.
 For example, to install only the Alerts module:
@@ -37,6 +32,22 @@ Check the :doc:`modules/index` page for a list of available modules and their fu
 
 Additional Options
 ------------------
+
+Installing all packages
+~~~~~~~~~~~~~~~~~~~~~~~
+
+To install all modules and external dependencias use
+
+.. code-block:: bash
+
+    pip install 'dmf-utils[all, extra]'
+
+
+.. note::
+
+    **Disclaimer**: This can be a large installation due to the number of dependencies required for all modules.
+
+
 
 Installing Without Internet Access
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
