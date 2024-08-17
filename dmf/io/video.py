@@ -32,9 +32,67 @@ CODECS_MAPPING = {
 
 
 class VideoWriter:
+    """
+    A utility class to create videos from a sequence of image frames.
+
+    This class supports adding frames from various sources, including NumPy arrays, PIL images, Matplotlib figures, and image file paths. It automatically infers the appropriate codec based on the file extension or uses a specified codec.
+
+    Examples
+    --------
+    Creating a video from a list of image paths:
+
+    .. code-block:: python
+
+        from dmf.io.video import VideoWriter
+
+        frames = ["frame1.png", "frame2.png", "frame3.png"]
+        with VideoWriter("output.mp4") as writer:
+            for frame in frames:
+                writer.add_frame(frame)
+
+    Creating a video from NumPy arrays:
+
+    .. code-block:: python
+
+        import numpy as np
+        from dmf.io.video import VideoWriter
+
+        frames = [np.random.randint(0, 255, (480, 640, 3), dtype=np.uint8) for _ in range(10)]
+        with VideoWriter("output.mp4") as writer:
+            for frame in frames:
+                writer.add_frame(frame)
+
+    Creating a video from Matplotlib figures:
+
+    .. code-block:: python
+
+        import matplotlib.pyplot as plt
+        from dmf.io.video import VideoWriter
+
+        with VideoWriter("output.mp4") as writer:
+            for i in range(10):
+                fig, ax = plt.subplots()
+                ax.plot([0, 1, 2], [i, i**2, i**3])
+                writer.add_frame(fig)
+                plt.close(fig)
+    """
+
     def __init__(
         self, file_path: Union[str, Path], codec: Optional[str] = None, fps: int = 30
     ):
+        """
+        Initialize the VideoWriter.
+
+        Parameters
+        ----------
+        file_path : Union[str, Path]
+            The path where the output video file will be saved.
+        codec : Optional[str], default=None
+            The codec to use for video compression.
+        fps : int, default=30
+            Frames per second (FPS) for the output video.
+        """
+        
         self.file_path = Path(file_path)
         self.codec = codec or self._get_codec()
         self.fps = fps
@@ -45,7 +103,19 @@ class VideoWriter:
         self.n_frames = 0
 
     def add_frame(self, frame: FrameType) -> int:
-        """Add a frame to the video."""
+        """
+        Add a frame to the video.
+
+        Parameters
+        ----------
+        frame : FrameType
+            The frame to add to the video.
+
+        Returns
+        -------
+        int
+            The total number of frames added to the video.
+        """
         frame_data = self._get_frame_data(frame)
 
         if not self._initialized:
@@ -56,7 +126,19 @@ class VideoWriter:
         return self.n_frames
 
     def generate_video(self, frames: Iterable[FrameType]) -> Path:
-        """Generate a video from a list of frames."""
+        """
+        Generate a video from a list of frames.
+
+        Parameters
+        ----------
+        frames : Iterable[FrameType]
+            An iterable of frames to add to the video.
+
+        Returns
+        -------
+        Path
+            The path to the output video file.
+        """
         for frame in frames:
             self.add_frame(frame)
         return self.release()

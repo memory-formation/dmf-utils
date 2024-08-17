@@ -78,4 +78,5 @@ extra = [
     "librosa",
     "opencv-python",
     "matplotlib",
+    "py7zr",
 ]

@@ -47,24 +47,37 @@ def compress(
 
     Notes
     -----
-    - Either `compression` or `output_file` must be provided, but not both. If neither is provided, the default compression format "zip" is used.
+    Either `compression` or `output_file` must be provided, but not both. If neither is provided, the default compression format "zip" is used.
+
     - If `output_file` is provided without a specified `compression`, the format will be inferred from the file extension.
     - If `compression` is provided without an `output_file`, the output file path is derived by appending the appropriate file extension to the `input_file` path.
     - Password protection is only supported for ZIP and 7z formats.
 
     Examples
     --------
-    Example 1: Compressing a directory into a zip file
-    >>> compress("my_folder", compression="zip")
+    Compressing a directory into a zip file
 
-    Example 2: Compressing a file into a gzip file
-    >>> compress("data.txt", output_file="data.txt.gz")
+    .. code-block:: python
 
-    Example 3: Compressing a directory with a specified output file and inferred format
-    >>> compress("my_folder", output_file="my_folder.tar.gz")
+        compress("my_folder", compression="zip")
 
-    Example 4: Compressing a directory into a password-protected zip file
-    >>> compress("my_folder", compression="zip", password="mypassword")
+    Compressing a file into a gzip file
+
+    .. code-block:: python
+
+        compress("data.txt", output_file="data.txt.gz")
+
+    Compressing a directory with a specified output file and inferred format
+
+    .. code-block:: python
+
+        compress("my_folder", output_file="my_folder.tar.gz")
+
+    Compressing a directory into a password-protected file
+
+    .. code-block:: python
+
+        compress("my_folder", compression="7z", password="mypassword")
     """
 
     input_file = Path(input_file)

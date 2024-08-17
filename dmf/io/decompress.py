@@ -17,7 +17,7 @@ def decompress(
     Decompress a compressed file.
 
     This function decompresses a file based on its extension or the specified compression format.
-    The supported formats include gzip, bzip2, xz, zip, 7z, and various tar-based formats.
+    Supported formats include gzip, bzip2, xz, zip, 7z, and various tar-based formats.
 
     Supported Formats
     -----------------
@@ -52,7 +52,7 @@ def decompress(
     Raises
     ------
     ValueError
-        If the input file is invalid, or if the compression format is unsupported.
+        If the input file is invalid or if the compression format is unsupported.
     NotImplementedError
         If password protection is used with an unsupported compression format.
     ImportError
@@ -61,13 +61,22 @@ def decompress(
     Examples
     --------
     Example 1: Decompressing a gzip file
-    >>> decompress("example.gz", output_dir="output")
+
+    .. code-block:: python
+
+        decompress("example.gz", output_dir="output")
 
     Example 2: Decompressing a zip file
-    >>> decompress("example.zip", output_dir="output")
+
+    .. code-block:: python
+
+        decompress("example.zip", output_dir="output")
 
     Example 3: Decompressing a 7z file with a password
-    >>> decompress("example.7z", output_dir="output", password="mypassword")
+
+    .. code-block:: python
+
+        decompress("example.7z", output_dir="output", password="mypassword")
 
     Notes
     -----

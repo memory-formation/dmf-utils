@@ -23,35 +23,10 @@ See the [documentation](https://dmf-utils.readthedocs.io/) for more installation
 
 ## Modules
 
-* [Alerts](#alerts): Get notified when a function finishes running and send messages or files to Slack and Telegram.
+* [Alerts](https://dmf-utils.readthedocs.io/en/latest/modules/alerts.html): Get notified when a function finishes running and send messages or files to Slack and Telegram.
+* [IO (Input/Output)](https://dmf-utils.readthedocs.io/en/latest/modules/io.html): Load and save data from different formats, including CSV, Excel, and HDF5.
 
-### Alerts
-
-Send messages or files to Slack and Telegram, and get notified when a function finishes running.
-
-```bash
-pip install dmf-utils[alerts]
-```
-
-```python
-from dmf.alerts import alert
-
-@alert
-def my_function(name):
-    sleep(5)
-    return f"Hello, {name}!"
-
-my_function("World")
-```
-
-Or as a command-line tool:
-
-```bash
-./my_function > output.txt
-dmf-alert "Execution finished" -a output.txt
-```
-
-See the documentation for more information on how to set up the messaging service and additional functionalities.
+See the [modules documentation](https://dmf-utils.readthedocs.io/en/latest/modules/index.html) for more information.
 
 ## Documentation
 

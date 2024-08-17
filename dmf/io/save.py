@@ -11,28 +11,33 @@ def save(data: Any, file_path: Union[str, Path], saver: Optional[str] = None, **
     """
     Save data to a file using the appropriate saver.
 
+    This function saves data to various file formats by automatically determining the appropriate saver based on the file extension. You can also specify the saver explicitly if desired.
+
+    Supported Savers
+    ----------------
+    - "pickle": For .pkl files.
+    - "joblib": For .joblib files.
+    - "pandas": For .csv, .parquet, .xlsx, .xls, .feather files.
+    - "json": For .json files.
+    - "str": For .txt, .html, .log, .md, .rst files.
+    - "hdf5": For .h5, .hdf5, .hdf files.
+    - "numpy": For .npz, .npy files.
+    - "pillow": For image files (.jpg, .jpeg, .png, .bmp, .gif, .tiff, .tif, .webp).
+    - "pytorch": For PyTorch model files (.pt, .pth).
+    - "yaml": For .yaml, .yml files.
+    - "ini": For .ini, .cfg files.
+    - "matlab": For .mat files.
+    - "audio": For audio files (.wav, .mp3, .flac, .ogg).
+    - "video": For video files (.mp4, .avi, .mov, .mkv).
+
     Parameters
     ----------
     data : Any
         The data to be saved. The type of data should match the saver being used.
     file_path : Union[str, Path]
         The path to the file where the data should be saved. The file extension will be used to determine the appropriate saver if not specified.
-    saver : Optional[str]
-        The saver type to use. If not provided, it will be inferred from the file extension. Supported savers include:
-        - "pickle": For .pkl files.
-        - "joblib": For .joblib files.
-        - "pandas": For .csv, .parquet, .xlsx, .xls, .feather files.
-        - "json": For .json files.
-        - "str": For .txt, .html, .log, .md, .rst files.
-        - "hdf5": For .h5, .hdf5, .hdf files.
-        - "numpy": For .npz, .npy files.
-        - "pillow": For image files (.jpg, .jpeg, .png, .bmp, .gif, .tiff, .tif, .webp).
-        - "pytorch": For PyTorch model files (.pt, .pth).
-        - "yaml": For .yaml, .yml files.
-        - "ini": For .ini, .cfg files.
-        - "matlab": For .mat files.
-        - "audio": For audio files (.wav, .mp3, .flac, .ogg).
-        - "video": For video files (.mp4, .avi, .mov, .mkv).
+    saver : Optional[str], default=None
+        The saver type to use. If not provided, it will be inferred from the file extension.
     kwargs : dict
         Additional keyword arguments to pass to the saver function.
 
@@ -46,6 +51,38 @@ def save(data: Any, file_path: Union[str, Path], saver: Optional[str] = None, **
         If the file extension or specified saver is not supported, or if the data type does not match the expected type.
     ImportError
         If the required library for the specified saver is not installed.
+
+    Examples
+    --------
+    Saving a DataFrame to a CSV file:
+
+    .. code-block:: python
+
+        import pandas as pd
+        from dmf.io import save
+
+        df = pd.DataFrame({"a": [1, 2, 3]})
+        save(df, "data.csv")
+
+    Saving an image using Pillow:
+
+    .. code-block:: python
+
+        from PIL import Image
+        from dmf.io import save
+
+        img = Image.new("RGB", (100, 100), color="red")
+        save(img, "image.png")
+
+    Saving a NumPy array to an NPZ file:
+
+    .. code-block:: python
+
+        import numpy as np
+        from dmf.io import save
+
+        arr = np.array([1, 2, 3])
+        save(arr, "data.npz")
     """
     file_path = Path(file_path)
     ext = file_path.suffix.lstrip(".").lower()

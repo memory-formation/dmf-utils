@@ -11,26 +11,31 @@ def load(file_path: Union[str, Path], loader: Optional[str] = None, **kwargs):
     """
     Load data from a file using the appropriate loader.
 
+    This function loads data from various file formats by automatically determining the appropriate loader based on the file extension. You can also specify the loader explicitly if desired.
+
+    Supported Loaders
+    -----------------
+    - "pickle": For .pkl files.
+    - "joblib": For .joblib files.
+    - "pandas": For .csv, .parquet, .xlsx, .xls, .feather files.
+    - "json": For .json files.
+    - "str": For .txt, .html, .log, .md, .rst files.
+    - "hdf5": For .h5, .hdf5, .hdf files.
+    - "numpy": For .npz, .npy files.
+    - "pillow": For image files (.jpg, .jpeg, .png, .bmp, .gif, .tiff, .tif, .webp).
+    - "pytorch": For PyTorch model files (.pt, .pth).
+    - "yaml": For .yaml, .yml files.
+    - "ini": For .ini, .cfg files.
+    - "matlab": For .mat files.
+    - "audio": For audio files (.wav, .mp3, .flac, .ogg).
+    - "video": For video files (.mp4, .avi, .mov, .mkv).
+
     Parameters
     ----------
     file_path : Union[str, Path]
         The path to the file to load. The file extension will be used to determine the appropriate loader if not specified.
-    loader : Optional[str]
-        The loader type to use. If not provided, it will be inferred from the file extension. Supported loaders include:
-        - "pickle": For .pkl files.
-        - "joblib": For .joblib files.
-        - "pandas": For .csv, .parquet, .xlsx, .xls, .feather files.
-        - "json": For .json files.
-        - "str": For .txt, .html, .log, .md, .rst files.
-        - "hdf5": For .h5, .hdf5, .hdf files.
-        - "numpy": For .npz, .npy files.
-        - "pillow": For image files (.jpg, .jpeg, .png, .bmp, .gif, .tiff, .tif, .webp).
-        - "pytorch": For PyTorch model files (.pt, .pth).
-        - "yaml": For .yaml, .yml files.
-        - "ini": For .ini, .cfg files.
-        - "matlab": For .mat files.
-        - "audio": For audio files (.wav, .mp3, .flac, .ogg).
-        - "video": For video files (.mp4, .avi, .mov, .mkv).
+    loader : Optional[str], default=None
+        The loader type to use. If not provided, it will be inferred from the file extension.
     kwargs : dict
         Additional keyword arguments to pass to the loader function.
 
@@ -46,7 +51,7 @@ def load(file_path: Union[str, Path], loader: Optional[str] = None, **kwargs):
         - str for text files (.txt, .log, etc.)
         - configparser.ConfigParser for INI files
         - dict for MATLAB files (.mat)
-        - tuple(np.ndarray, int) for audio files
+        - tuple[np.ndarray, int] for audio files
         - list[np.ndarray] for video files
         - Any for pickle and joblib files (the specific type depends on the serialized object)
 
@@ -59,18 +64,30 @@ def load(file_path: Union[str, Path], loader: Optional[str] = None, **kwargs):
 
     Examples
     --------
-    >>> import pandas as pd
-    >>> df = load('data.csv')
-    >>> type(df)
-    <class 'pandas.core.frame.DataFrame'>
+    Loading a DataFrame from a CSV file:
 
-    >>> img = load('image.png')
-    >>> type(img)
-    <class 'PIL.PngImagePlugin.PngImageFile'>
+    .. code-block:: python
 
-    >>> tensor = load('model.pth')
-    >>> type(tensor)
-    <class 'torch.Tensor'>
+        import pandas as pd
+        df = load('data.csv')
+        type(df)
+        # <class 'pandas.core.frame.DataFrame'>
+
+    Loading an image using Pillow:
+
+    .. code-block:: python
+
+        img = load('image.png')
+        type(img)
+        # <class 'PIL.PngImagePlugin.PngImageFile'>
+
+    Loading a PyTorch model:
+
+    .. code-block:: python
+
+        tensor = load('model.pth')
+        type(tensor)
+        # <class 'torch.Tensor'>
     """
 
     file_path = Path(file_path)
