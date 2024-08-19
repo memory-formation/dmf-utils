@@ -52,8 +52,6 @@ intersphinx_mapping = {
     'pillow': ('https://pillow.readthedocs.io/en/stable/', None),
     'torch': ('https://pytorch.org/docs/stable/', None),
     'sklearn': ('https://scikit-learn.org/stable/', None),
-    'h5py': ('http://docs.h5py.org/en/stable/', None),
-    'joblib': ('https://joblib.readthedocs.io/en/latest/', None),
 }
 autodoc_default_options = {"members": True, "inherited-members": True, "show-inheritance": True}
 
@@ -64,7 +62,9 @@ language = "en"
 
 html_theme = "pydata_sphinx_theme"
 html_favicon = "https://brainvitge.org/website/wp-content/themes/brainvitge/favicon.png"
-html_logo = "https://raw.githubusercontent.com/memory-formation/.github/main/logos/brainvitge.png"
+#html_logo = "https://raw.githubusercontent.com/memory-formation/.github/main/logos/brainvitge.png"
+html_logo = "assets/dmf-utils-inline.svg"
+html_logo_dark = "assets/dmf-utils-inline-dark.svg"
 html_theme_options = {
     "github_url": "https://github.com/memory-formation/dmf-utils",
     # "navbar_start": ["navbar-logo"],
@@ -84,6 +84,10 @@ html_theme_options = {
             "type": "url",
         },
     ],
+     "logo": {
+        "image_light": html_logo,
+        "image_dark": html_logo_dark,
+    },
 }
 html_context = {
     "github_user": "memory-formation",

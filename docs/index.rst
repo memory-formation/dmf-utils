@@ -1,5 +1,15 @@
-Welcome to DMF Utils's documentation!
-=====================================
+
+
+.. image:: ./assets/dmf-utils.svg
+  :alt: dmf-utils
+  :target: https://github.com/memory-formation/dmf-utils/
+  :class: only-light
+
+.. image:: ./assets/dmf-utils-dark.svg
+  :alt: dmf-utils
+  :target: https://github.com/memory-formation/dmf-utils/
+  :class: only-dark
+
 
 .. image:: https://badge.fury.io/py/dmf-utils.svg
    :target: https://pypi.org/project/dmf-utils/

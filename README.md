@@ -1,5 +1,14 @@
 
-# DMF Utils
+<p align="center">
+  <a href="https://github.com/memory-formation/dmf-utils">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/dmf-utils-dark.svg">
+        <img alt="dmf-utils" src="./docs/assets/dmf-utils.svg">
+    </picture>
+  </a>
+</p>
+
+-------
 
 [![PyPI version](https://badge.fury.io/py/dmf-utils.svg)](https://pypi.org/project/dmf-utils/)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dmf-utils)

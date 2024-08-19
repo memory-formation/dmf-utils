@@ -187,3 +187,4 @@ autosummary/
 
 # Include DMF env module
 !dmf/env/
+!docs/assets/*.svg
