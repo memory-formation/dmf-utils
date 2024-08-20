@@ -13,13 +13,16 @@ try:
     import numpy as np
 except ImportError:
     raise ImportError(
-        "NumPy is required for video writing. Install it using `pip install numpy`."
+        "NumPy is required for video writing. "
+        "Install it using `pip install numpy`."
     )
 
 if TYPE_CHECKING:
     import numpy as np
     from PIL import Image
     import matplotlib.pyplot as plt
+
+__all__ = ["VideoWriter", "write_video"]
 
 FrameType = Union["np.ndarray", "Image.Image", "plt.Figure", Path, str]
 
@@ -29,6 +32,39 @@ CODECS_MAPPING = {
     "avi": "MJPG",
     "mov": "avc1",
 }
+
+
+def write_video(
+    file_path: Union[str, Path],
+    frames: Iterable[FrameType],
+    fps: int = 30,
+    codec: Optional[str] = None,
+) -> Path:
+    """
+    Write a video from a list of frames.
+
+    Parameters
+    ----------
+    frames : Iterable[FrameType]
+        An iterable of frames to add to the video.
+    file_path : Union[str, Path]
+        The path where the output video file will be saved.
+    fps : int, default=30
+        Frames per second (FPS) for the output video.
+    codec : Optional[str], default=None
+        The codec to use for video compression.
+        Use the file extension to infer the 
+        codec if not specified.
+
+    Returns
+    -------
+    Path
+        The path to the output video file.
+    """
+
+    writer = VideoWriter(file_path=file_path, codec=codec, fps=fps)
+
+    return writer.write_video(frames)
 
 
 class VideoWriter:
@@ -92,7 +128,7 @@ class VideoWriter:
         fps : int, default=30
             Frames per second (FPS) for the output video.
         """
-        
+
         self.file_path = Path(file_path)
         self.codec = codec or self._get_codec()
         self.fps = fps
@@ -125,7 +161,7 @@ class VideoWriter:
         self.n_frames += 1
         return self.n_frames
 
-    def generate_video(self, frames: Iterable[FrameType]) -> Path:
+    def write_video(self, frames: Iterable[FrameType]) -> Path:
         """
         Generate a video from a list of frames.
 

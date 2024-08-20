@@ -64,21 +64,27 @@ alerts = [
     "slack_sdk",
     "requests",
 ]
+video = [
+    "numpy",
+    "opencv-python",
+    "pillow",
+]
 all = [
     "sphinx",
     "pydata-sphinx-theme",
     "slack_sdk",
     "requests",
+    "numpy",
+    "opencv-python",
+    "pillow",
 ]
 extra = [
     "pandas", 
     "h5py", 
-    "pillow",
     "torch",
     "pyyaml",
     "scipy",
     "librosa",
-    "opencv-python",
     "matplotlib",
     "py7zr",
 ]

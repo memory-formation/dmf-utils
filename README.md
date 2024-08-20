@@ -35,8 +35,10 @@ See the [documentation](https://dmf-utils.readthedocs.io/) for more installation
 ## Modules
 
 * [Alerts](https://dmf-utils.readthedocs.io/en/latest/modules/alerts.html): Get notified when a function finishes running and send messages or files to Slack and Telegram.
-* [IO](https://dmf-utils.readthedocs.io/en/latest/modules/io.html): Load and save data from different formats, and manage compressed files.
 * [Env](https://dmf-utils.readthedocs.io/en/latest/modules/env.html): Manage environment variables.
+* [IO (Input/Output)](https://dmf-utils.readthedocs.io/en/latest/modules/io.html): Load and save data from different formats, and manage compressed files.
+* [Video](https://dmf-utils.readthedocs.io/en/latest/modules/video.html): Utilities to work with video files.
+
 
 See the [modules documentation](https://dmf-utils.readthedocs.io/en/latest/modules/index.html) for more information.
 

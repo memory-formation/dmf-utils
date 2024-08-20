@@ -172,32 +172,4 @@ Examples
     from dmf.io import decompress
 
     decompress("my_folder.zip")
-
-Other Utilities
----------------
-
-In addition to saving, loading, and compression, the IO module includes utilities such as `VideoWriter`, which can be used to create videos from image frames.
-
-.. autosummary::
-   :toctree: autosummary
-
-   dmf.io.VideoWriter
-
-
-Examples
-~~~~~~~~
-
-**Creating a Video from Image Frames**:
-
-.. code-block:: python
-
-    import cv2
-    from dmf.io.video import VideoWriter
-
-    # Initialize the VideoWriter
-    with VideoWriter("output.mp4", fps=30) as writer:
-        for i in range 100):
-            frame = cv2.imread(f"frame_{i}.png")
-            writer.add_frame(frame)
-
-This will create a video file `output.mp4` from a sequence of image frames.
+    

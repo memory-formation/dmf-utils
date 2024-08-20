@@ -311,6 +311,5 @@ def save_audio(data: Any, file_path: Path, **kwargs):
 @register_saver("video", ["mp4", "avi", "mov", "mkv"])
 def save_video(data: Any, file_path: Path, **kwargs):
     """Save data using the video saver."""
-    from .video import VideoWriter
-    writer = VideoWriter(file_path, **kwargs)
-    writer.generate_video(data)
+    from ..video.video_writer import write_video
+    write_video(file_path=file_path, frames=data, **kwargs)

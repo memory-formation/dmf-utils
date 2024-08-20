@@ -9,5 +9,6 @@ Below are the different modules available within the package:
    :maxdepth: 1
 
    alerts
-   io
    env
+   io
+   video
