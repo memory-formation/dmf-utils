@@ -2,8 +2,8 @@
 <p align="center">
   <a href="https://github.com/memory-formation/dmf-utils">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="./docs/assets/dmf-utils-dark.svg">
-        <img alt="dmf-utils" src="./docs/assets/dmf-utils.svg">
+        <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/memory-formation/dmf-utils/main/docs/assets/dmf-utils-dark.svg">
+        <img alt="dmf-utils" src="https://raw.githubusercontent.com/memory-formation/dmf-utils/main/docs/assets/dmf-utils.svg">
     </picture>
   </a>
 </p>
