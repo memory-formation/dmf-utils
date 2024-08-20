@@ -18,7 +18,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/memory-formation/dmf-utils/blob/main/LICENSE)
 
 
-DMF Utils is a Python package that provides a collection of utility functionalities to simplify common tasks in experiment and data analysis workflows. The package contains modules used by our group to facilitate tasks in neuroscience and artificial intelligence research.
+DMF Utils is a Python package that provides a collection of utility functionalities to simplify common tasks in experiment and data analysis workflows. The package contains modules used by our group to facilitate tasks in neuroscience research.
 
 ## Quick Start
 
@@ -37,6 +37,7 @@ See the [documentation](https://dmf-utils.readthedocs.io/) for more installation
 * [Alerts](https://dmf-utils.readthedocs.io/en/latest/modules/alerts.html): Get notified when a function finishes running and send messages or files to Slack and Telegram.
 * [Env](https://dmf-utils.readthedocs.io/en/latest/modules/env.html): Manage environment variables.
 * [IO (Input/Output)](https://dmf-utils.readthedocs.io/en/latest/modules/io.html): Load and save data from different formats, and manage compressed files.
+* [Models](https://dmf-utils.readthedocs.io/en/latest/modules/models.html): Utilities for PyTorch models.
 * [Video](https://dmf-utils.readthedocs.io/en/latest/modules/video.html): Utilities to work with video files.
 
 
@@ -48,7 +49,7 @@ For full documentation, visit [Read the Docs](https://dmf-utils.readthedocs.io/)
 
 ## Contributing
 
-This package is maintained by [Dynamics of Memory Formation (DMF)](https://brainvitge.org/groups/memory_formation/) at the University of Barcelona. We welcome contributions from the community. If you would like to contribute, please open an issue or a pull request.
+This package is maintained by [Dynamics of Memory Formation (DMF)](https://brainvitge.org/groups/memory_formation/) at the [University of Barcelona](https://web.ub.edu/en/web/ub/). If you would like to contribute, please open an issue or a pull request.
 
 ## License
 

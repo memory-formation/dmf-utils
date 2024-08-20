@@ -3,7 +3,7 @@ Video
 
 The `video` module in DMF Utils provides utilities for reading and writing video files. It offers functions to easily handle video frames, allowing you to write videos from frames and read videos into various formats such as NumPy arrays or PIL images.
 
-This module is included in the base package:
+To install dependencies for the `video` module, use the following command:
 
 .. code-block:: bash
 

@@ -11,4 +11,5 @@ Below are the different modules available within the package:
    alerts
    env
    io
+   models
    video

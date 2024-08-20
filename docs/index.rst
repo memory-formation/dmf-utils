@@ -66,6 +66,7 @@ DMF Utils is designed in a modular way, allowing you to install only the compone
 - :doc:`modules/alerts`: Tools for sending notifications and alerts via Slack and Telegram.
 - :doc:`modules/env`: Facities to manage environemt variables.
 - :doc:`modules/io`: Input/output utilities for file handling and data management.
+- :doc:`modules/models`: Utilities for working with Pytorch.
 - :doc:`modules/video`: Utilities for reading and writing video files.
 
 
