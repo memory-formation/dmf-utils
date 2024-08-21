@@ -61,13 +61,11 @@ language = "en"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
-html_favicon = "https://brainvitge.org/website/wp-content/themes/brainvitge/favicon.png"
-#html_logo = "https://raw.githubusercontent.com/memory-formation/.github/main/logos/brainvitge.png"
+html_favicon = "assets/favicon.png"
 html_logo = "assets/dmf-utils-inline.svg"
 html_logo_dark = "assets/dmf-utils-inline-dark.svg"
 html_theme_options = {
     "github_url": "https://github.com/memory-formation/dmf-utils",
-    # "navbar_start": ["navbar-logo"],
     "logo": {
         "text": "dmf-utils",
     },
@@ -96,3 +94,6 @@ html_context = {
     "doc_path": "docs",
 }
 
+html_sidebars = {
+    'installation': []
+}
