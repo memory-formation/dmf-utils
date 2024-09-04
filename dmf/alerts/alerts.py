@@ -1,5 +1,5 @@
 from typing import Optional, TYPE_CHECKING, Tuple, Union
-
+import warnings
 
 from ..utils.typing import Literal
 from ..env import env
@@ -58,6 +58,11 @@ def send_message(
 
     """
     backend = get_backend()
+
+    if not backend:
+        warnings.warn("No alert backend is available. Message not sent.")
+        return
+
     backend.send_message(
         text=text, attachment=attachment, scheduled_time=scheduled_time
     )
@@ -102,17 +107,20 @@ def send_alert(
 
     Sending an error alert with an attachment::
 
-        send_alert(text="An error occurred. See the attached log file.", attachment="/path/to/log.txt", level="error")
+        send_alert(text="An error occurred. See the attached log file.", attachmenlogging.warning("No alert backend is available. Message not sent.")t="/path/to/log.txt", level="error")
 
     """
     # Get or create the backend instance (always storing it globally)
     backend = get_backend()
+    if not backend:
+        warnings.warn("No alert backend is available. Message not sent.")
+        return
     backend.send_alert(text=text, attachment=attachment, params=params, level=level)
 
 
 def get_backend(
     alert_token: Optional[str] = None, store: bool = True
-) -> "AlertBackend":
+) -> Optional["AlertBackend"]:
     """
     Get or create an AlertBackend instance. If the global backend is None or store is False, initialize it with resolved credentials.
 
@@ -135,7 +143,7 @@ def get_backend(
 
             current_backend = TelegramBackend(token=alert_token)
         else:
-            raise ValueError(f"Unsupported credential type: {credential_type}")
+            current_backend = None
 
         # Store the backend if required
         if store:
@@ -149,7 +157,7 @@ def get_backend(
 
 def resolve_credentials(
     alert_token: Optional[str] = None,
-) -> Tuple[str, Literal["slack", "telegram"]]:
+) -> Tuple[Optional[str], Optional[Literal["slack", "telegram"]]]:
     """
     Resolve the credentials for the alert system. Look for environment variables, or use provided overrides.
 
@@ -159,9 +167,7 @@ def resolve_credentials(
     alert_token = alert_token or env.getenv(ALERT_TOKEN)
 
     if not alert_token:
-        raise ValueError(
-            f"Alert token must be provided or set in the {ALERT_TOKEN} environment variable."
-        )
+        return None, None
 
     if alert_token.startswith("xoxb-"):
         credential_type = "slack"
@@ -169,5 +175,7 @@ def resolve_credentials(
 
     elif len(alert_token.split(":")) == 2:
         credential_type = "telegram"
+    else:
+        credential_type = None
 
     return alert_token, credential_type
