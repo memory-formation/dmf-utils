@@ -2,9 +2,14 @@ from typing import Callable, Optional
 from datetime import datetime
 from pathlib import Path
 
+
 from .alerts import send_alert
 
-__all__ = ["alert"]
+__all__ = ["alert", "DoNotAlert"]
+
+class DoNotAlert(Exception):
+    """Exception raised to prevent an alert from being sent."""
+    pass
 
 
 def alert(
@@ -13,6 +18,7 @@ def alert(
     output: bool = False,
     input: bool = False,
     max_length: int = 100,
+    disable: bool = False,
 ) -> Callable:
     """
     Decorator that sends an alert after the execution of the decorated function.
@@ -64,6 +70,12 @@ def alert(
             print(f"Hello {name}")
             return Path("/path/to/{name}.pdf")
     """
+    # Quick disable of the alert decorator
+    if disable:
+        if func is None:
+            return lambda func: func
+        return func
+
     if func is None:
         # Used as @alert(output=True, input=True) with parentheses
         def decorator(inner_func: Callable) -> Callable:
@@ -75,7 +87,6 @@ def alert(
     else:
         # Used as @alert without parentheses
         return _alert_decorator(func, output=output, input=input, max_length=max_length)
-
 
 def _alert_decorator(
     func: Callable,
@@ -118,6 +129,9 @@ def _alert_decorator(
                 text=message, level="success", params=params, attachment=attachment
             )
             return result
+        except DoNotAlert:
+            # Do not send an alert if the DoNotAlert exception is raised
+            return result
         except Exception as e:
             end_time = datetime.now()
             message = f"Execution of function *{func.__name__}* failed with an error."
@@ -148,3 +162,6 @@ def _input_to_str(args, kwargs, input, max_length: int = 100) -> str:
         if input is True or key in input:
             input_str += f"{sep}*{key}*: _{_to_str(value, max_length)}_"
     return input_str
+
+# Assign the DoNotAlert exception to the alert decorator
+setattr(alert, "DoNotAlert", DoNotAlert)
