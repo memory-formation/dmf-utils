@@ -29,7 +29,7 @@ class ScreenMixin:
 
         if isinstance(text, list):
             for t in text:
-                self.show_message(
+                self.screen_message(
                     t,
                     text_position=text_position,
                     text_color=text_color,

@@ -5,6 +5,7 @@ from .monitor import resolve_monitor
 from .screens import ScreenMixin
 from .dialog import DialogMixin
 from .distractors import DistractorMixin
+from .logger import get_logger
 
 # Global display instance
 DISPLAY = None
@@ -41,6 +42,7 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
         keyboard_refresh: float = 0.03,
         monitor_kwargs: dict = {},
         config_kwargs: dict = {},
+        trigger = None
     ):
         """
         Initialize the Display.
@@ -70,6 +72,8 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
         self.clock = core.Clock()
         self.global_clock = core.Clock()
         self.trial_clock = core.Clock()
+        self.logger = get_logger()
+        self.trigger = trigger
 
     def show(
         self,
