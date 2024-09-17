@@ -24,8 +24,8 @@ class Trigger:
 
     def __init__(
         self,
-        port: Literal["parallel", "serial"],
-        port_address: Any,
+        port: Literal["parallel", "serial", "dummy"],
+        port_address: Any = None,
         mapping: Optional[dict] = None,
         delay: float = 0.01,
         **kwargs,
@@ -45,6 +45,12 @@ class Trigger:
             The delay in seconds between sending the trigger and resetting the port, by default 0.01.
         **kwargs : dict
             Additional keyword arguments passed to the serial port if applicable.
+
+        Examples
+        --------
+        Initialize a Serial port:
+
+        >>> trigger = Trigger(port="serial", port_address="COM3", delay=0.01, baudrate=115200, timeout=0)
         """
         self.port = port
         self.port_address = port_address
@@ -81,6 +87,8 @@ class Trigger:
             self._send_parallel_trigger(trigger_code)
         elif self.port == "serial":
             self._send_serial_trigger(trigger_code)
+        elif self.port == "dummy":
+            logger.info(f"Dummy trigger sent: {trigger_code}")
 
     def _send_parallel_trigger(self, trigger_code: int):
         """
@@ -96,7 +104,7 @@ class Trigger:
         core.wait(self.delay)
         self._port.setData(0)  # Reset the port after the delay
 
-    def _open_parallel_port(self):
+    def _open_parallel_port(self, **kwargs):
         """
         Initialize the parallel port.
 
@@ -106,7 +114,7 @@ class Trigger:
         """
         from psychopy import parallel
         logger.info(f"Parallel port initialized at address {self.port_address}")
-        self._port = parallel.ParallelPort(address=self.port_address)
+        self._port = parallel.ParallelPort(address=self.port_address, **kwargs)
         self._port.setData(0)  # Reset port at initialization
 
     def _open_serial_port(self, **kwargs):

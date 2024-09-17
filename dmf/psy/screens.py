@@ -136,6 +136,8 @@ class ScreenMixin:
         question_color: Optional[Tuple[int, int, int]] = None,
         max_wait: Optional[Union[int, float]] = None,
         min_wait: Optional[Union[int, float]] = None,
+        slider_size: Optional[Tuple[int, int]] = (30, 1.5),
+        slider_pos: Optional[Tuple[int, int]] = (0, 0),
         clock=None,
     ) -> int:
         """Display a question with a slider."""
@@ -151,8 +153,8 @@ class ScreenMixin:
             ticks=ticks,
             labels=tick_labels,
             granularity=1,
-            size=(30, 1.5),
-            pos=(0, 0),
+            size=slider_size,
+            pos=slider_pos,
             color="black",
             borderColor="black",
             font="Arial",

@@ -218,6 +218,26 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
             self.window.close()
             self.window = None
 
+    def set_trigger(self, trigger):
+        self.trigger = trigger
+
+    def send_trigger(self, trigger_code: Union[int, str]):
+        """
+        Send a trigger via the configured port.
+
+        The trigger can be provided as a string (which will be mapped to a trigger code)
+        or directly as an integer. If the trigger code is not found in the mapping, an error will be logged.
+
+        Parameters
+        ----------
+        trigger_code : Union[int, str]
+            The trigger code to send, either as an integer or a string key mapped to an integer.
+        """
+        if self.trigger is None:
+            self.log("No trigger device configured.")
+            return
+        self.trigger.send_trigger(trigger_code)
+
     def screen_choice(
         self,
         options: Tuple[str, ...],
@@ -228,6 +248,10 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
         positions: Optional[List[List[float]]] = None,
         clock: Optional[core.Clock] = None,
         show_keys: bool = True,
+        text: Optional[str] = None,
+        text_position: Optional[List[float]] = [0, 6],
+        text_wrap_width: Optional[Union[int, float]] = 40,
+        text_height: Optional[Union[int, float]] = 1,
     ) -> Tuple[Optional[str], Optional[float], Optional[str]]:
         """
         Display a choice screen with visual buttons for the participant to select an option.
@@ -271,6 +295,15 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
 
         if not (len(options) == len(positions) == len(keys)):
             raise ValueError("The number of options, positions, and keys must be the same.")
+        
+        if text:
+            text_sim = visual.TextStim(
+                self.window, pos=text_position, color="black"
+            )
+            text_sim.wrapWidth = text_wrap_width
+            text_sim.text = text
+            text_sim.height = text_height
+            text_sim.draw()
 
         # Draw buttons and texts
         for option, key, position in zip(options, keys, positions):
