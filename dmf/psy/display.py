@@ -1,3 +1,4 @@
+import logging
 from typing import Optional, Union, List, Tuple
 from psychopy import monitors, visual, core, event
 from .config import Config, load_config
@@ -123,7 +124,7 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
         self.window.setMouseVisible(mouse_visible)
         return self.window
 
-    def log(self, message: str):
+    def log(self, message: str, level: int = logging.INFO, **kwargs):
         """
         Log a message to the console.
 
@@ -132,7 +133,7 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
         message : str
             The message to log.
         """
-        print(message)
+        self.logger.log(level, message, **kwargs)
 
     def flip(self) -> "Display":
         """
@@ -209,6 +210,56 @@ class Display(DialogMixin, ScreenMixin, DistractorMixin):
             if max_wait is not None and self.clock.getTime() > max_wait:
                 self.log("Max wait time reached.")
                 return None, None
+            
+    # def wait_for_key(
+    #     self,
+    #     key_list: Optional[List[str]] = ["space"],
+    #     clear_events: bool = True,
+    #     max_wait: Optional[Union[int, float]] = None,
+    #     min_wait: Optional[Union[int, float]] = None,
+    #     clock: Optional[core.Clock] = None,
+    # ) -> Tuple[Optional[str], Optional[float]]:
+    #     """
+    #     Wait for a key press from the user.
+
+    #     Parameters
+    #     ----------
+    #     key_list : list of str, optional
+    #         List of keys to listen for.
+    #     clear_events : bool, optional
+    #         Whether to clear existing key events before waiting.
+    #     max_wait : int or float, optional
+    #         Maximum time to wait for a key press.
+    #     min_wait : int or float, optional
+    #         Minimum time to wait before accepting key presses.
+    #     clock : psychopy.core.Clock, optional
+    #         Clock to use for timestamping key presses.
+
+    #     Returns
+    #     -------
+    #     tuple
+    #         A tuple containing the key pressed and its timestamp.
+    #     """
+    #     self.log(f"Waiting for key: {key_list}.")
+    #     self.clock.reset()
+
+    #     if clear_events:
+    #         event.clearEvents()
+    #     interval = core.StaticPeriod()
+
+    #     if min_wait is not None:
+    #         core.wait(min_wait)
+
+    #     timestamp_clock = clock if clock else self.clock
+    #     print("Vamo a esperar keys")
+    #     keys = event.waitKeys(maxWait=max_wait, keyList=key_list, timeStamped=timestamp_clock, clearEvents=True)
+    #     print(keys)
+    #     if keys:
+    #         key, timestamp = keys[0]
+    #         self.log(f"Key pressed: {key} ({timestamp})")
+    #         return key, timestamp
+
+    #     return None, None
 
     def close(self):
         """

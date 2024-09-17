@@ -44,48 +44,23 @@ def dialog_form(
     ExperimentStopped
         If the user cancels the dialog or if input validation fails due to regex mismatch.
     """
-
-    # Separate fields with and without choices
-    info_choices = {k: v for k, v in information.items() if "choices" in v}
-    info_fields = {k: v for k, v in information.items() if "choices" not in v}
+    dialog = gui.Dlg(title=title)
 
     # Prepare the dialog data
-    info = {k: v.get("default", "") for k, v in info_fields.items()}
-    labels = {k: v.get("label", k) for k, v in info_fields.items()}
-    labels.update({k: v.get("label", k) for k, v in info_choices.items()})
-    regex_patterns = {k: v.get("regex") for k, v in info_fields.items()}
-    fixed_fields = [k for k, v in info_fields.items() if v.get("fixed", False)]
+    for k, v in information.items():
+        dialog.addField(k, initial=v.get("default", ""), choices=v.get("choices", None))
 
     try:
-        # Create the dialog
-        dialog = gui.DlgFromDict(
-            dictionary=info,
-            title=title,
-            fixed=fixed_fields,
-            labels=labels,
-            show=False
-        )
-
-        # Add choice fields
-        for k, v in info_choices.items():
-            choices = v.get("choices", ["-"])
-            initial = v.get("default", choices[0])
-            # label = v.get("label", k)
-            dialog.addField(k, initial=initial, choices=choices)
-
         dialog.show()
-
     except KeyboardInterrupt:
         raise ExperimentStopped(cancel_message)
-
+    
     if not dialog.OK:
         raise ExperimentStopped(cancel_message)
+    
+    print(dialog.data)
 
-    # Validate input using regex patterns
-    for k, pattern in regex_patterns.items():
-        if pattern is not None and not re.match(pattern, info[k]):
-            raise ExperimentStopped(f"Invalid {k} format: {info[k]}.")
-
+    info = {k: v for k, v in zip(information.keys(), dialog.data)}
     
     return info
 
